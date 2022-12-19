@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Výpočet narodenín </title>
+
+<input type="date"  id="birthday">
+<button onclick="calculateBirthday()">Vypočítať narodeniny</button>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script>
+  function calculateBirthday() {
+   
+    let birthdayInput = document.getElementById('birthday');
+    let birthday = moment(birthdayInput.value);
+
+   
+    let currentDate = moment();
+    let nextBirthday = moment(birthday).set('year', currentDate.year());
+    if (nextBirthday.isBefore(currentDate)) {
+      nextBirthday.add(1, 'year');
+    }
+    let daysUntilNextBirthday = nextBirthday.diff(currentDate, 'days');
+    console.log('Počet dní do najbližších narodenín: ' + daysUntilNextBirthday);
+
+    // Vypíše ročné obdobie pre zadaný dátum narodenia
+    let month = birthday.month();
+    if (month == 2 || month == 3 || month == 4) {
+      console.log('Ročné obdobie: JAR');
+    } else if (month == 5 || month == 6 || month == 7) {
+      console.log('Ročné obdobie: LETO');
+    } else if (month == 8 || month == 9 || month == 10) {
+      console.log('Ročné obdobie: JESEŇ');
+    } else {
+      console.log('Ročné obdobie: ZIMA');
+    }
+  }
+</script>
+
+    
+      
+  </body>
+</html>
